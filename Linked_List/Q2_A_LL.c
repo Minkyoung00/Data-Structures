@@ -100,10 +100,40 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/*  Q2. alternateMergeLinkedList 함수 */
+/*  :2번째 리스트의 노드들을 첫 번째 리스트의 다른 위치에 insert 하는 함수 */
+/*  조건 1. 두 번째 리스트의 노드들은 첫 번째 리스트에 가능한 다른 위치가 있을 때만 insert 되어야 한다. */
+/*  조건 2. if (두 번째 리스트) < (첫 번째 리스트), 두 번째 리스트 => empty */
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+    ListNode *cur1, *cur2, *temp1, *temp2;
+    int index=0;
+
+    cur1 = ll1->head;
+    cur2 = ll2->head;
+    
+    while (1){
+        temp1 = cur1->next;		/*ll1에서 cur1의 다음 노드 주소값*/
+        temp2 = cur2->next;		/*112에서 cur2의 다음 노드 주소값*/
+        
+		if (temp1 == NULL){		/*cur1가 마지막 노드*/
+            cur1->next = cur2;	/*cur1 다음 노드로 cur2*/
+            cur2->next = temp1;	/*cur2는 ll2의 끝노드*/
+            break;
+        }  
+
+        if (temp2 == NULL){		/*cur2가 마지막 노드*/
+            break;
+        } 
+
+        cur1->next = cur2;
+        cur2->next = temp1;
+        cur1 = temp1;
+        cur2 = temp2;
+    } 
+
+	ll2->head = temp2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
