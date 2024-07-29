@@ -41,6 +41,7 @@ int main()
 	int c, i;
 	LinkedList ll;
 	LinkedList resultFrontList, resultBackList;
+	c = 1;
 
 	//Initialize the linked list as an empty linked list
 	ll.head = NULL;
@@ -99,10 +100,25 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/*  Q5. frontBackSplitLinkedList 함수 */
+/*  : 연결리스트를 2개의 서브리스트로 나누는 함수 */
+/*  조건 1. 노드가 홀수 개일 때, 앞리스트에 추가 */
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
+	ListNode *cur;
+	cur = ll->head;
+	resultFrontList->head = cur;
+	ll->head = NULL;
+
+	int index = 0;
+
+	while (index < (ll->size / 2)){
+		cur = cur->next;
+		index++;
+	}
+	resultBackList->head = cur->next;
+	cur->next = NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +155,7 @@ void removeAllItems(LinkedList *ll)
 }
 
 
-ListNode * findNode(LinkedList *ll, int index){
+ListNode *findNode(LinkedList *ll, int index){
 
 	ListNode *temp;
 

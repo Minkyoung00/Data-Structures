@@ -87,6 +87,12 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/*  Q1. insertSortedLL 함수 */
+/*  사용자에게 int를 입력받아 연결리스트에 오름차순 추가 */
+/*  조건 1. 연결리스트에 이미 존재하는 int값이 입력된 경우, insert 하지 않는다 */
+/*  조건 2. 출력값으로 새로운 값이 추가되는 index를 반환한다. */
+/*  조건 3. 조건 1에 해당하는 경우, -1 값을 반환한다. */
+/*  조건 4. 연결리스트는 정렬된 연결리스트 혹은 빈리스트로 가정한다. */
 
 int insertSortedLL(LinkedList *ll, int item)
 {
@@ -124,7 +130,6 @@ int insertSortedLL(LinkedList *ll, int item)
 			return -1;
 		} 	
 	}
-
     return index;
 }
 

@@ -83,10 +83,41 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/*  Q3. moveOddItemsToBack 함수 */
+/*  : 모든 홀수 int를 LinkedList의 뒤로 옮기는 함수 */
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	ListNode *cur, *even, *even_start, *odd, *odd_start;
+	cur = ll->head;
+	even_start = even = malloc(sizeof(ListNode));
+	odd_start = odd = malloc(sizeof(ListNode));
+
+	int odd_cnt = 0;
+	int even_cnt = 0;
+
+	while(1){
+		if (odd_cnt + even_cnt == ll->size){
+			odd->next = NULL;
+			even->next = odd_start->next;
+			ll->head = even_start->next;
+			break;
+		}
+
+		if (cur->item % 2 ==1){		/* 현재 노드가 홀수 */
+			odd->next = cur;
+			odd = cur;
+			
+			odd_cnt++;
+		}
+		else{ 						/* 현재 노드가 짝수 */
+			even->next = cur;
+			even = cur;
+
+			even_cnt++;
+		}
+		cur = cur->next;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
