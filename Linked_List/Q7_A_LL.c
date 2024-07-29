@@ -84,10 +84,27 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////////////////
+/*  Q7. RecursiveReverse 함수 */
+/*  : 다음 포인터와 head 포인터를 바꿈으로써 주어진 LinkedList를 재귀적으로 reverse 하는 함수 */
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	/* add your code here */
+	ListNode *cur, *pre, *post;
+	cur = *ptrHead;
+
+	if(cur->next == NULL){
+		return;
+	}
+
+	pre = cur;
+	cur = cur->next;
+	post = cur ->next;
+	*ptrHead = post;
+	cur->next = pre;
+
+	RecursiveReverse(ptrHead);
+	post->next = cur;
+	pre->next = NULL;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -85,10 +85,24 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////////////////
-
-int moveMaxToFront(ListNode **ptrHead)
+/*  Q6. moveMaxToFront 함수 */
+/*  : LinkedList를 최대 한 번 가로질러 가장 큰 수를 가진 노드를 앞으로 이동하는 함수 */
+int moveMaxToFront(ListNode **ptrHead)		/* 이중포인터로 Head가 가리키는 주소값을 바꾸겠다!!*/
 {
-    /* add your code here */
+	ListNode *cur, *pre, *pre_max, *max;
+	cur = pre = pre_max = max = *ptrHead;
+
+	while (cur->next != NULL){
+		if (cur->item > max->item){		/* 현재 노드의 수가 max 노드보다 클 때 */			
+			pre_max = max;
+			max = cur;					/* max 노드 갱신 */
+		}
+		pre = pre->next;
+		cur = cur->next;
+	}
+	pre_max->next = max->next; 
+	max->next = *ptrHead;
+	*ptrHead = max;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
