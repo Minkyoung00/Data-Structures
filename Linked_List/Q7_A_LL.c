@@ -89,18 +89,24 @@ int main()
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	ListNode *cur, *pre, *post;
-	cur = *ptrHead;
+	ListNode *pre, *cur, *post;						/* 이전(pre) 현재(cur) 다음(post) 노드의 주소값을 저장하는 pointer 변수 선언*/
+	cur = *ptrHead;									/* head가 가리키는 노드 주소 cur에 할당*/
 
-	if(cur->next == NULL){
+	if(cur == NULL || cur->next == NULL) return;	/* 빈 리스트이거나 cur 노드가 마지막 노드면 return*/
+
+	pre = cur;					
+	cur = cur->next;				/* *head = pre - cur */
+
+	if(cur->next == NULL) {			/* post를 할당할 수 없을 때 */
+		*ptrHead = cur;
+		cur->next = pre;
+		pre->next = NULL;
 		return;
 	}
 
-	pre = cur;
-	cur = cur->next;
-	post = cur ->next;
-	*ptrHead = post;
-	cur->next = pre;
+	post = cur ->next;				/* *head = pre - cur - post */
+	*ptrHead = post;				/* head가 post 노드를 가리키게 */
+	cur->next = pre;				/* cur->pre 연결선 갱신 */
 
 	RecursiveReverse(ptrHead);
 	post->next = cur;
