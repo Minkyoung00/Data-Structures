@@ -100,10 +100,26 @@ int main()
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-
+/* Q3. isStackPairwiseConsecutive 함수 */
+/* : stack 안의 숫자들의 연속하는 쌍들인지 아닌지 확인하는 함수 */
+/* 조건 1. stack에서 int를 넣고 뺄 때는 push()와 pop()만 사용할 것 */
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+	int pop1, pop2;
+
+	while(isEmptyStack(s) != 1){
+		pop1 = pop(s);
+
+		if (isEmptyStack(s) == 1){
+			return 0;
+		}
+		pop2 = pop(s);
+
+		if (pop1 - pop2 != 1 & pop1 - pop2 != -1){
+			return 0;
+		}
+	}
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

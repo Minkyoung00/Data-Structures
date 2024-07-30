@@ -27,7 +27,7 @@ typedef struct _linkedlist
 typedef struct _stack
 {
 	LinkedList ll;
-}Stack;  // You should not change the definition of Stack
+} Stack;  // You should not change the definition of Stack
 
 ///////////////////////// function prototypes ////////////////////////////////////
 
@@ -110,15 +110,43 @@ int main()
 
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q2. createStackFromLinkedList 함수 */
+/* : LinkedList 안에 저장되어있는 모든 int를 push하여 stack를 만드는 함수  */
+/* 조건 1. 첫 번째 노드는 첫 번째, 두 번째 노드는 두 번쨰 ... 로 push 한다. */
+/* 조건 2. stack이 비어있지 않다면, 비우고 시작한다. */
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+    ListNode *cur;
+	cur = ll->head;
+
+	if (isEmptyStack(s)==1){		/* 조건 2*/
+		removeAllItemsFromStack(s);
+	}
+
+	for (int i = 0; i < ll->size; i++){
+		push(s, cur->item);
+		cur = cur->next;
+	}
 }
 
 void removeEvenValues(Stack *s)
 {
-	/* add your code here */
+	Stack temp_s;
+	temp_s.ll.head = NULL;
+	temp_s.ll.size = 0;	
+	int temp_int;
+	
+	while(isEmptyStack(s) != 1){
+		temp_int = pop(s);
+		if (temp_int % 2 == 1){	/* 홀수만 temp_stack에 담기 */
+			push(&temp_s, temp_int);
+		}
+	}
+	
+	while(isEmptyStack(&temp_s) != 1){
+		temp_int = pop(&temp_s);
+		push(s, temp_int);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////

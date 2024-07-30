@@ -113,15 +113,36 @@ int main()
 
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q1. createQueueFromLinkedList 함수 */
+/* : LinkedList 안에 저장되어있는 모든 int를 enqueue하여 queue를 만드는 함수  */
+/* 조건 1. 첫 번째 노드는 첫 번째, 두 번째 노드는 두 번쨰 ... 로 enqueue 한다. */
+/* 조건 2. queue가 비어있지 않다면, 비우고 시작한다. */
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	ListNode *cur;
+	cur = ll->head;
+
+	if (isEmptyQueue(q)==1){		/* 조건 2*/
+		removeAllItemsFromQueue(q);
+	}
+
+	for (int i = 0; i < ll->size; i++){
+		enqueue(q, cur->item);
+		cur = cur->next;
+	}
 }
 
 void removeOddValues(Queue *q)
-{
-	/* add your code here */
+{	
+	int temp;
+	int size = q->ll.size;
+	
+	for (int i = 0; i < size; i++){
+		temp = dequeue(q);
+		if (temp % 2 == 0){	/* 짝수 */
+			enqueue(q, temp);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////

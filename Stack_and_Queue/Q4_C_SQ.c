@@ -109,10 +109,24 @@ int main()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+/* Q4. reverse 함수 */
+/* : stack을 이용해 queue를 reverse 하는 함수  */
+/* 조건 1. stack에서 int를 넣고 뺄 때는 push()와 pop()만 사용할 것 */
+/* 조건 2. queue에서 int를 넣고 뺄 때는 enqueue()와 dequeue()만 사용할 것 */
+/* 조건 3. stack이 비어있지 않다면, 비우고 시작한다. */
 void reverse(Queue *q)
 {
-/* add your code here */
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;	
+
+	while (isEmptyQueue(q) != 1){
+		push(&s, dequeue(q));
+	}
+
+	while (isEmptyStack(&s) != 1){
+		enqueue(q,pop(&s));
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

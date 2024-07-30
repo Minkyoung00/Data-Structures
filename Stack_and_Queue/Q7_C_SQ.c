@@ -102,9 +102,39 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
+/* Q7. balanced 함수 */
+/* : ()[]{}로 구성된 표현의 균형이 맞는지 판별하는 함수  */
+
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;	
+
+	while(*expression != '\000'){
+		if (*expression == '('|| *expression == '{' || *expression == '['){		
+			push(&s,*expression);
+			expression++;
+		}
+		else{
+			if ((char)peek(&s) == '(' && *expression == ')'){
+				pop(&s);
+			}
+			else if ((char)peek(&s) == '{' && *expression == '}'){
+				pop(&s);
+			}
+			else if ((char)peek(&s) == '[' && *expression == ']'){
+				pop(&s);
+			}
+			expression++;
+		}
+	}
+
+	if (isEmptyStack(&s)){
+		return 0;
+	}
+ 
+	return 1;
 }
 
 ////////////////////////////////////////////////////////////

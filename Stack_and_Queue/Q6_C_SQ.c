@@ -108,10 +108,13 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
-
+/* Q6. removeUntil 함수 */
+/* : 선택된 값이 첫 번째로 나올 때까지 int stack의 값을 pop 하는 함수  */
 void removeUntil(Stack *s, int value)
 {
-/* add your code here */
+	while(peek(s) != value & isEmptyStack(s) != 1){
+		pop(s);	
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -106,10 +106,21 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
+/* Q5. recursiveReverse 함수 */
+/* : queue의 요소 순서를 재귀적으로 reverse 하는 함수  */
 
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
+	if (isEmptyQueue(q)==1){
+		return;
+	}
+	
+	int temp;
+	temp = dequeue(q);
+
+	recursiveReverse(q);
+	
+	enqueue(q, temp);
 }
 
 //////////////////////////////////////////////////////////////////
