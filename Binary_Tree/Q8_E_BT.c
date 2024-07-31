@@ -110,17 +110,17 @@ int hasGreatGrandchild(BTNode *node)
     int depth, depth_left, depth_right;
     depth = 0;
 
-    if (!(node->left == NULL && node->right == NULL)) depth++;
+    if (!(node->left == NULL && node->right == NULL)) depth++; /* node가 leaf node가 아니면 depth +1*/
     
-    depth_left = hasGreatGrandchild(node->left);
-    depth_right = hasGreatGrandchild(node->right);
+    depth_left = hasGreatGrandchild(node->left);    /* 왼쪽 노드 depth */
+    depth_right = hasGreatGrandchild(node->right);  /* 오른쪽 노드 depth */
 
-    if (depth_left > depth_right){
+    if (depth_left > depth_right){                  /* 더 큰 depth 더하기*/
         depth += depth_left; 
     }
     else depth += depth_right; 
 
-    if (depth >= 3) printf("%d ", node->item);
+    if (depth >= 3) printf("%d ", node->item);      /* depth가 3 이상이면(증조부이면) 해당 노드 print*/
 
     return depth;
 }
