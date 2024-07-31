@@ -112,11 +112,22 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q1. identical 함수 */
+/* : 2개의 binary tree가 구조적으로 동일한지 재귀적으로 판별하는 함수  */
+/* 조건 1: 동일하면 1, 그렇지 않으면 0을 반환한다. */
+/* 조건 2: 둘다 비어있는 tree이면 동일하다고 판단한다. */
+/* 조건 3: 둘다 비어있지 않을 때, 모든 노드의 값이 동일하고 같은 방식으로 정렬되어 있으면 같은 tree로 판단한다.*/
 int identical(BTNode *tree1, BTNode *tree2)
-
 {
-   /* add your code here */
+    if (tree1 == NULL && tree2 == NULL) return 1;
+    if (tree1 == NULL || tree2 == NULL) return 0;
+
+    if (tree1->item == tree2->item) {
+        if (identical(tree1->left, tree2->left) == 1
+        && identical(tree1->right, tree2->right) == 1) 
+            return 1;
+    }
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////

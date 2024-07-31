@@ -99,10 +99,22 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q7. smallestValue 함수 */
+/* 주어진 tree에 저장된 가장 작은 값을 반환하는 함수 */
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+	if (node == NULL) return __INT_MAX__;
+    
+    int min, min_left, min_right;
+    min = min_left = min_right = node->item;
+    
+    min_left = smallestValue(node->left);
+    min_right = smallestValue(node->right);
+
+    if (min > min_left) min = min_left;
+    if (min > min_right) min = min_right;
+
+    return min;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

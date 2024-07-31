@@ -33,7 +33,6 @@ typedef struct _stack
 
 
 ///////////////////////// Function prototypes ////////////////////////////////////
-
 // You should not change the prototypes of these functions
 int hasGreatGrandchild(BTNode *node);
 
@@ -80,6 +79,7 @@ int main()
                 printf("\nThe values stored in all nodes of the tree that has at least one great-grandchild are: ");
                 hasGreatGrandchild(root);
                 removeAll(&root);
+                printf("\n");
                 break;
             case 0:
                 removeAll(&root);
@@ -99,10 +99,30 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q8. hasGreatGrandchild 함수 */
+/* 적어도 하나의 great-grandchild node를 가지고 있는 binary tree의 
+모든 노드에 저장된 값을 재귀적으로 프린트 하는 함수 */
+/* 조건 | root node의 pointer를 유일한 파라미터로 받는다. */
 int hasGreatGrandchild(BTNode *node)
 {
-	/* add your code here */
+	if (node == NULL) return 0;
+
+    int depth, depth_left, depth_right;
+    depth = 0;
+
+    if (!(node->left == NULL && node->right == NULL)) depth++;
+    
+    depth_left = hasGreatGrandchild(node->left);
+    depth_right = hasGreatGrandchild(node->right);
+
+    if (depth_left > depth_right){
+        depth += depth_left; 
+    }
+    else depth += depth_right; 
+
+    if (depth >= 3) printf("%d ", node->item);
+
+    return depth;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

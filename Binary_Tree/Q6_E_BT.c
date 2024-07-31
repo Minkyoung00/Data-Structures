@@ -102,10 +102,18 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q7. printSmallerValues 함수 */
+/* : binary tree에 저장된 int 중 주어진 값 m보다 작은 모든 노드들을 print 하는 함수  */
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+	if (node == NULL) return;
+
+    if (node->item < m){
+        printf("%d ", node->item);
+    }
+
+    printSmallerValues(node->left,m);
+    printSmallerValues(node->right,m); 
 }
 
 //////////////////////////////////////////////////////////////////////////////////

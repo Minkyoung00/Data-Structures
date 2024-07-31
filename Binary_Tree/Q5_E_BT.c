@@ -102,10 +102,22 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q5. mirrorTree 함수 */
+/* : 결과 tree가 기존 구조의 반전이 되도록 binary tree를 재귀적으로 수정하는 함수  */
+/* 조건 1. 임시 tree를 만들지 않는다. */
+/* 조건 2. root node의 pointer를 유일한 파라미터로 받는다. */
 void mirrorTree(BTNode *node)
 {
-	/* add your code here */
+    if (node == NULL) return;
+
+    BTNode *temp = NULL;
+    
+    temp = node->left;
+    node->left = node->right;
+    node->right = temp;
+
+    mirrorTree(node->left);
+    mirrorTree(node->right);
 }
 
 //////////////////////////////////////////////////////////////////////////////////

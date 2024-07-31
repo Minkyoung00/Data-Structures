@@ -97,11 +97,22 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/* Q3. countOneChildNodes 함수 */
+/* : binary tree의 root node pointer를 받아, 
+    단 하나의 자식 node만 갖는 node의 수를 반환하는 함수  */
 
 int countOneChildNodes(BTNode *node)
-
 {
-    /* add your code here */
+    if (node == NULL) return 0;
+
+    int cnt = 0;
+
+    if (node->left == NULL && node->right == NULL) return 0; 
+    if (node->left == NULL || node->right == NULL) cnt += 1; 
+    
+    cnt += countOneChildNodes(node->left) + countOneChildNodes(node->right);
+
+    return cnt;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

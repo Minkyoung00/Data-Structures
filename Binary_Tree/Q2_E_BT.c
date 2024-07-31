@@ -93,13 +93,29 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+/* Q2. maxHeight 함수 */
+/* : binary tree의 root node pointer를 받아, 
+    root node에서 가장 먼 leaf 노드에 이르는 최장경로를 이루는 link들의 수(height)를 return하는 함수  */
+/* 조건 1: 주어진 node의 height는 해당 노드에서 가장 깊은 leaf node까지의 link들의 수와 같다 */
+/* 조건 2: 빈 tree의 height는 -1로 한다. */
 
 int maxHeight(BTNode *node)
+{   
+    if (node == NULL) return -1;
+    
+    int max = 0;
 
-{
-    /* add your code here */
+    int height_left = maxHeight(node->left) + 1;    /* 왼쪽 노드의 leaf node까지의 최대 height */
+    int height_right = maxHeight(node->right) + 1;  /* 오른쪽 노드의 leaf node까지의 최대 height */
+
+    if (height_left > height_right)     /* 좌우측 중 큰 값을 max에 더해 갱신*/
+        max += height_left;
+    else 
+        max += height_right;
+
+    return max;
 }
-
+    
 ///////////////////////////////////////////////////////////////////////////////////
 
 BTNode *createBTNode(int item){

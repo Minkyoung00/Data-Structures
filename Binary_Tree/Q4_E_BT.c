@@ -99,11 +99,21 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q4. sumOfOddNodes 함수 */
+/* : binary tree의 홀수 노드의 합을 반환하는 함수  */
 int sumOfOddNodes(BTNode *node)
-
 {
-    /* add your code here */
+    if (node == NULL) return 0;
+
+    int sum_odd = 0;
+
+    if (node->item % 2 == 1){
+        sum_odd += node->item;
+    }
+
+    sum_odd += sumOfOddNodes(node->left) + sumOfOddNodes(node->right); 
+
+    return sum_odd;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
