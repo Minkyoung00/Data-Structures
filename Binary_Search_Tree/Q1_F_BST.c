@@ -90,11 +90,31 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q1. levelOrderTraversal 함수 */
+/* : root node에서 시작해서 큐를 사용해 순서대로 탐색하고 출력  */
 void levelOrderTraversal(BSTNode* root)
 {
+	Queue q;
+	q.head = NULL;
+	q.tail = NULL;
 
-    /* add your code here */
+	enqueue(&((&q)->head), &((&q)->tail), root);
+
+	BSTNode *temp = NULL;
+
+	while(q.head != NULL){
+		temp = dequeue(&((&q)->head), &((&q)->tail));
+		
+		printf("%d ", temp->item); 
+		
+		if (temp->left != NULL){
+			enqueue(&((&q)->head), &((&q)->tail), temp->left);
+		}
+		if (temp->right != NULL){
+			enqueue(&((&q)->head), &((&q)->tail), temp->right);
+		}
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

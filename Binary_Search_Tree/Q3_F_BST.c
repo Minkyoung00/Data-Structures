@@ -88,10 +88,23 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q3. preOrderIterative 함수 */
+/* : root node에서 시작해서 stack을 사용해 전위순회하고 출력  */
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
+	Stack q;
+	q.top = NULL;
+
+	BSTNode *temp = root;
+
+	push(&q, root);
+
+	while(q.top != NULL){
+		temp = pop(&q);
+		if (temp->right != NULL) push(&q, temp->right);
+		if (temp->left != NULL) push(&q, temp->left);
+		printf("%d ", temp->item);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

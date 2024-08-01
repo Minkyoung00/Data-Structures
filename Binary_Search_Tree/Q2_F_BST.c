@@ -87,10 +87,27 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q2. inOrderTraversal 함수 */
+/* : root node에서 시작해서 stack을 사용해 비순차 탐색하고 출력  */
 void inOrderTraversal(BSTNode *root)
 {
-	 /* add your code here */
+	Stack q;
+	q.top = NULL;
+
+	BSTNode *temp = root;
+
+	while(q.top != NULL || temp != NULL){
+		while(temp != NULL){
+			push(&q, temp);
+			temp = temp->left;
+		}
+
+		temp = pop(&q);
+
+		printf("%d ", temp->item); 
+
+		temp = temp->right;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

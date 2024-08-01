@@ -88,10 +88,32 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+/* Q4. postOrderIterativeS1 함수 */
+/* : root node에서 시작해서 stack을 사용해 후위순회 탐색하고 출력  */
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	Stack q;
+	q.top = NULL;
+
+	BSTNode *pre = root, *temp = root;
+
+	while(q.top != NULL || temp != NULL){
+		while(temp != NULL && temp == pre){
+			push(&q, temp);
+			temp = temp->left;
+			pre = temp;
+		}
+
+		temp = pop(&q);
+
+		printf("%d ", temp->item); 
+
+		if (temp == pre) temp = q.top->data->right;
+		else {
+			temp = q.top->data;
+			pre = temp;
+		} 
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
