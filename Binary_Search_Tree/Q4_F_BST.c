@@ -90,32 +90,37 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 /* Q4. postOrderIterativeS1 함수 */
 /* : root node에서 시작해서 stack을 사용해 후위순회 탐색하고 출력  */
-void postOrderIterativeS1(BSTNode *root)
-{
-	Stack q;
-	q.top = NULL;
 
-	BSTNode *pre = root, *temp = root;
+void postOrderIterativeS1(BSTNode *root) {
+    if (root == NULL) return;
 
-	while(q.top != NULL || temp != NULL){
-		while(temp != NULL && temp == pre){
-			push(&q, temp);
-			temp = temp->left;
-			pre = temp;
-		}
+    Stack q;
+    q.top = NULL;
 
-		temp = pop(&q);
+    BSTNode *temp = root; 
 
-		printf("%d ", temp->item); 
+    do {
+        // Move to the leftmost node
+        while (temp != NULL) {
+            if (temp->right != NULL) push(&q, temp->right);
+            push(&q, temp);
+            temp = temp->left;
+        }
 
-		if (temp == pre) temp = q.top->data->right;
-		else {
-			temp = q.top->data;
-			pre = temp;
-		} 
-	}
+        // Pop an item from stack and set it as temp
+        temp = pop(&q);
+
+        // If the popped item has a right child and the right child is at the top of the stack
+        if (temp->right != NULL && q.top != NULL && temp->right == q.top->data) {
+            pop(&q);  // remove the right child from stack
+            push(&q, temp);  // push temp back to stack
+            temp = temp->right;  // change temp so that the right child is processed next
+        } else {
+            printf("%d ", temp->item);
+            temp = NULL;
+        }
+    } while (q.top != NULL);
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 
 void insertBSTNode(BSTNode **node, int value){
